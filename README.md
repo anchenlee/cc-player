@@ -28,6 +28,12 @@ ccplayer.play(...);
 CCPlayer.play(...);
 ```
 
+## API 文档
+
+### `play()`
+
+Coming soon...
+
 ## 开发
 
 Coming soon...

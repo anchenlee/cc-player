@@ -93,9 +93,10 @@ function Player(container, options = {}) {
     if (container.length && container.jquery) {
         this.container = container[0];
     } else if (typeof container === 'string') {
-        // 如果不是，则将 container 当成选择器去页面中查找元素
+        // 如果 container 是 string，则将 container 当成选择器去页面中查找元素
         this.container = document.querySelector(container);
     } else {
+        // 如果是其他的类型，直接将值赋给 this.container
         this.container = container;
     }
 
@@ -104,12 +105,16 @@ function Player(container, options = {}) {
     }
 
     this.options = { ...DEFAULT_OPTIONS, ...options };
+
     // player 的 swf 对应的 id
     this.objectId = null;
+
     // 用来保存事件处理函数
     this._handlers = {};
+
     // CC 播放器原始的配置项
     this.config = {};
+
     this.uid = uid++;
     
     // 初始化播放器事件
@@ -132,7 +137,11 @@ Player.prototype.play = function play(vid) {
 
     const src = buildUrl(this.options);
     this._prepareVideoContainer(src);
+
+    // 调用 CC 自家的 showPlayer() 方法来加载视频
     window.cc_js_Player.showPlayer();
+
+    return this;
 };
 
 Player.prototype.on = function on(event, handler) {
@@ -176,6 +185,8 @@ Player.prototype.setConfig = function setConfig(config = {}) {
     if (swf) {
         swf.setConfig(this.config);
     }
+
+    return this;
 };
 
 Player.prototype.getSWF = function getSWF() {

@@ -1,0 +1,31 @@
+{
+  "name": "cc-player",
+  "version": "0.0.0",
+  "description": "CC 播放器的二次封装，提供一些常用的 API 接口",
+  "main": "lib/index.js",
+  "files": [
+    "dist",
+    "lib"
+  ],
+  "scripts": {
+    "dist": "babel ./src --out-dir ./lib --presets es2015,stage-0 && webpack && uglifyjs ./dist/cc-player.js -mc -o ./dist/cc-player.min.js",
+    "version": "npm run dist && git add -A",
+    "example": "npm run dist && http-server -p 10086 . -o",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.dxy.net:biz-developer/cc-player.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.4.5",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-stage-0": "^6.3.13",
+    "http-server": "^0.9.0",
+    "uglify-js": "^2.6.1",
+    "webpack": "^1.12.13"
+  }
+}

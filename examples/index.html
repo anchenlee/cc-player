@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CC Player Demo</title>
+    <style>
+        .video-container {
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="video-1" class="video-container">
+        视频播放容器
+    </div>
+
+    <div id="video-2" class="video-container">
+        另一个视频播放容器
+    </div>
+
+    <div class="controls">
+        <button onclick="playVideo('CDFF86B3FC081A709C33DC5901307461')">播放视频一</button>
+        <button onclick="playVideo('0A7AE3E4912AC3E39C33DC5901307461')" class="btn-start">换个视频</button>
+        <button onclick="playAnotherVideo('608064DD3361BC209C33DC5901307461')">加载播放器二</button>
+        <button onclick="hideControl()">隐藏播放器二的控制条</button>
+        <button onclick="showControl()">显示播放器二的控制条</button>
+        <button onclick="pause()">暂停播放器二</button>
+        <button onclick="resume()">恢复播放器二</button>
+        <button onclick="getPosition()">获得播放器二播放时长</button>
+    </div>
+
+    <div class="log">
+        请打开控制台查看事件输出信息
+    </div>
+
+    <script src="../dist/cc-player.js"></script>
+    <script>
+        var container = document.querySelector('#video-1');
+        var player = new CCPlayer.init(container, {
+            width: 600,
+            height: 400
+        });
+
+        player
+            .on('ready', function () {
+                console.log('player1 ready');
+            })
+            .on('start', function () {
+                console.log('player1 start');
+            })
+            .on('seek', function (...args) {
+                console.log('player1 seek', args)
+            });
+
+        // 用来演示多个视频可以公用同一个 player 实例
+        function playVideo(vid) {
+            player.play(vid);
+        }
+
+        var anotherPlayer = CCPlayer.init('#video-2', {
+            width: 600,
+            height: 400
+        });
+
+        anotherPlayer
+            .on('ready', function () {
+                console.log('player2 ready');
+            })
+            .on('start', function () {
+                console.log('player2 start');
+            })
+            .on('fullscreen', function () {
+                console.log('player2 fullscreen');
+            });
+
+        // 用来演示一个页面中可以加载多个视频
+        function playAnotherVideo(vid) {
+            anotherPlayer.play(vid);
+        }
+
+        function hideControl() {
+            anotherPlayer.setConfig({
+                control_enable: false
+            });
+        }
+
+        function showControl() {
+            anotherPlayer.setConfig({
+                control_enable: true
+            });
+        }
+
+        function pause() {
+            anotherPlayer.pause();
+        }
+
+        function resume() {
+            anotherPlayer.resume();
+        }
+
+        function getPosition() {
+            alert(anotherPlayer.getPosition());
+        }
+
+        var logEl = document.querySelector('.log');
+        function log(msg) {
+            logEl.textContent = msg + '\n' + logEl.textContent;
+        }
+    </script>
+</body>
+</html>

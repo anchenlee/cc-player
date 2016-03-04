@@ -16,12 +16,6 @@
 npm install cc-player --save
 ```
 
-```js
-var CCPlayer = require('cc-player');
-var player = CCPlayer.init('#video-container', {
-});
-```
-
 ### 2. 通过 `<script>` 直接引用
 
 ```html

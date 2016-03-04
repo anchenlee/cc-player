@@ -63,7 +63,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	// CC 视频的脚本
 	var CC_SCRIPT = 'http://p.bokecc.com/js/player/v20110712.js';
 	// CC 视频默认播放器的 URL
-	var CC_PLAYER_PREFIX = 'http://p.bokecc.com/player?siteid=FC8B2CFA72C44E05&';
+	var CC_PLAYER_PREFIX = 'http://p.bokecc.com/player?';
 
 	var uid = 0;
 
@@ -71,7 +71,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	var DEFAULT_OPTIONS = {
 	    width: 'auto',
 	    height: 'auto',
-	    playerid: '642FA1ABFCD4C9B0',
 	    playertype: 1,
 	    autoStart: false
 	};
@@ -158,9 +157,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (container.length && container.jquery) {
 	        this.container = container[0];
 	    } else if (typeof container === 'string') {
-	        // 如果不是，则将 container 当成选择器去页面中查找元素
+	        // 如果 container 是 string，则将 container 当成选择器去页面中查找元素
 	        this.container = document.querySelector(container);
 	    } else {
+	        // 如果是其他的类型，直接将值赋给 this.container
 	        this.container = container;
 	    }
 
@@ -169,12 +169,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    this.options = _extends({}, DEFAULT_OPTIONS, options);
+
 	    // player 的 swf 对应的 id
 	    this.objectId = null;
+
 	    // 用来保存事件处理函数
 	    this._handlers = {};
+
 	    // CC 播放器原始的配置项
 	    this.config = {};
+
 	    this.uid = uid++;
 
 	    // 初始化播放器事件
@@ -201,7 +205,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    var src = buildUrl(this.options);
 	    this._prepareVideoContainer(src);
+
+	    // 调用 CC 自家的 showPlayer() 方法来加载视频
 	    window.cc_js_Player.showPlayer();
+
+	    return this;
 	};
 
 	Player.prototype.on = function on(event, handler) {
@@ -249,6 +257,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (swf) {
 	        swf.setConfig(this.config);
 	    }
+
+	    return this;
 	};
 
 	Player.prototype.getSWF = function getSWF() {
@@ -359,6 +369,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	}
 
+	proxyNativeMethods();
+
 	// 保存所有的 Player 的实例
 	var playerCache = [];
 	function getInstance(container) {
@@ -372,8 +384,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return null;
 	}
 
-	// 初始化 Player
-	function initInstance(container, options) {
+	// 创建 Player 实例
+	function newInstance(container, options) {
 	    var instance = new Player(container, options);
 	    var player = { container: container, options: options, instance: instance };
 
@@ -385,13 +397,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var player = getInstance(container);
 
 	    if (!player) {
-	        player = initInstance(container, options);
+	        player = newInstance(container, options);
 	    }
 
 	    return player.instance;
 	}
-
-	proxyNativeMethods();
 
 	module.exports = { init: init };
 

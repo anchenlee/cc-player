@@ -1,15 +1,16 @@
 // CC 视频的脚本
 const CC_SCRIPT = 'http://p.bokecc.com/js/player/v20110712.js';
 // CC 视频默认播放器的 URL
-const CC_PLAYER_PREFIX = 'http://p.bokecc.com/player?siteid=FC8B2CFA72C44E05&';
+const CC_PLAYER_PREFIX = 'http://p.bokecc.com/player?';
 
 let uid = 0;
 
 // 默认的配置参数
 const DEFAULT_OPTIONS = {
+    siteid: undefined, // 'FC8B2CFA72C44E05'
+    playerid: undefined, // '642FA1ABFCD4C9B0'
     width: 'auto',
     height: 'auto',
-    playerid: '642FA1ABFCD4C9B0',
     playertype: 1,
     autoStart: false
 };

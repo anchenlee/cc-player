@@ -1,7 +1,7 @@
 {
   "name": "cc-player",
   "version": "0.0.0",
-  "description": "CC 播放器的二次封装，提供一些常用的 API 接口",
+  "description": "对 CC 视频播放器的二次封装，提供一些常用的 API 接口，方便使用",
   "main": "lib/index.js",
   "files": [
     "dist",
@@ -15,11 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@gitlab.dxy.net:biz-developer/cc-player.git"
+    "url": "git@github.com:yuezk/cc-player.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "CC 视频",
+    "播放器"
+  ],
+  "author": "Kevin Yue <yuezk001@gmail.com>",
+  "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.4.5",
     "babel-preset-es2015": "^6.3.13",

@@ -69,6 +69,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// 默认的配置参数
 	var DEFAULT_OPTIONS = {
+	    siteid: undefined, // 'FC8B2CFA72C44E05'
+	    playerid: undefined, // '642FA1ABFCD4C9B0'
 	    width: 'auto',
 	    height: 'auto',
 	    playertype: 1,

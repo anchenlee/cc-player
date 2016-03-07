@@ -1,6 +1,6 @@
 {
   "name": "cc-player",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "对 CC 视频播放器的二次封装，提供一些常用的 API 接口，方便使用",
   "main": "lib/index.js",
   "files": [

@@ -56,8 +56,8 @@ player.play(vid);
 
 - `container (DOMElement|jQuery|string)`: 必填。播放器的容器，可以是一个 DOM 节点元素，可以是一个 jQuery 的对象，
 也可以是一个 DOM 选择器。
-- `options (object)`: 可选。播放器的配置选项：
-  - `siteid`: 可选，站点 id，但是建议配置成各自的 `siteid`，有利于 CC 视频的统计播放信息
+- `options (object)`: 必选。播放器的配置选项，请至少提供 `siteid`，否则导致移动端错误
+  - `siteid`: 必选，站点 id，但是建议配置成各自的 `siteid`，有利于 CC 视频的统计播放信息
   - `playerid`: 可选，播放器的皮肤类型，请根据自身需要进行设置
   - `width`: 可选，视频宽度，默认是 `auto`
   - `height`: 可选，视频高度，默认是 `auto`

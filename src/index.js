@@ -90,6 +90,11 @@ function Player(container, options = {}) {
         throw new Error('参数 `container` 不能为空！');
     }
 
+    // siteid 是必填的，否则在移动端会报错
+    if (!options.siteid) {
+        throw new Error('参数 `options.siteid` 不能为空！');
+    }
+
     // 如果是 jQuery 封装的 DOM 对象
     if (container.length && container.jquery) {
         this.container = container[0];

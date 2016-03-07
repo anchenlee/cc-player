@@ -215,8 +215,8 @@ eg. `[{ value: "0", label: "普通" }, { value: "1", label: "清晰" }]`
 
 `flag`，是否全屏；取值：0, 否；1, 是
 
-### [CHANGELOG](CHANGELOG.md)
+## [CHANGELOG](CHANGELOG.md)
 
-### LICENSE
+## LICENSE
 
 [MIT](LICENSE)

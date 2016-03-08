@@ -109,6 +109,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return;
 	        }
 
+	        pending = true;
 	        getScript(CC_SCRIPT, function () {
 	            var fn = undefined;
 	            // 脚本加载完成后执行回调
@@ -116,6 +117,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                // eslint-disable-line
 	                fn();
 	            }
+	            pending = false;
 	        });
 	    };
 	}();

@@ -37,7 +37,7 @@ function getScript(src, callback) {
 
 // 加载 CC 视频的脚本
 const loadPlayerScript = function () {
-    const pending = false;
+    let pending = false;
     const callbacks = [];
 
     return function (callback) {
@@ -47,12 +47,14 @@ const loadPlayerScript = function () {
             return;
         }
 
+        pending = true;
         getScript(CC_SCRIPT, function () {
             let fn;
             // 脚本加载完成后执行回调
             while (fn = callbacks.shift()) { // eslint-disable-line
                 fn();
             }
+            pending = false;
         });
     };
 }();
